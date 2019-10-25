@@ -1,0 +1,87 @@
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\JsonzaiTest.dll
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\JsonzaiTest.pdb
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Jsonzai.dll
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Jsonzai.pdb
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csprojAssemblyReference.cache
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csproj.CopyComplete
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.dll
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.pdb
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\ASUS\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\JsonzaiTest.dll
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\JsonzaiTest.pdb
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Jsonzai.dll
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Jsonzai.pdb
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csprojAssemblyReference.cache
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csproj.CoreCompileInputs.cache
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csproj.CopyComplete
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.dll
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.pdb
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\carol\Desktop\jsonzai-master\JsonzaiTest\bin\Debug\Newtonsoft.Json.xml
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\JsonzaiTest.dll
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\JsonzaiTest.pdb
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\Jsonzai.dll
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\Jsonzai.pdb
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\bin\Debug\Newtonsoft.Json.xml
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csprojAssemblyReference.cache
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csproj.CoreCompileInputs.cache
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csproj.CopyComplete
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.dll
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.pdb
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\JsonzaiTest.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\JsonzaiTest.pdb
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\Jsonzai.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\Jsonzai.pdb
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\bin\Debug\Newtonsoft.Json.xml
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csprojAssemblyReference.cache
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csproj.CoreCompileInputs.cache
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csproj.CopyComplete
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.pdb
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\JsonzaiTest.dll
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\JsonzaiTest.pdb
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\Jsonzai.dll
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\Jsonzai.pdb
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csprojAssemblyReference.cache
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.csproj.CopyComplete
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.dll
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\JsonzaiTest\obj\Debug\JsonzaiTest.pdb

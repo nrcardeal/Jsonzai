@@ -1,0 +1,41 @@
+C:\Users\ASUS\Desktop\jsonzai-master\Jsonzai\bin\Debug\Jsonzai.dll
+C:\Users\ASUS\Desktop\jsonzai-master\Jsonzai\bin\Debug\Jsonzai.pdb
+C:\Users\ASUS\Desktop\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csprojAssemblyReference.cache
+C:\Users\ASUS\Desktop\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.dll
+C:\Users\ASUS\Desktop\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.pdb
+C:\Users\carol\Desktop\jsonzai-master\Jsonzai\bin\Debug\Jsonzai.dll
+C:\Users\carol\Desktop\jsonzai-master\Jsonzai\bin\Debug\Jsonzai.pdb
+C:\Users\carol\Desktop\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csprojAssemblyReference.cache
+C:\Users\carol\Desktop\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csproj.CoreCompileInputs.cache
+C:\Users\carol\Desktop\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.dll
+C:\Users\carol\Desktop\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.pdb
+C:\Users\carol\Desktop\jsonzai-master\Jsonzai\bin\Debug\Newtonsoft.Json.dll
+C:\Users\carol\Desktop\jsonzai-master\Jsonzai\bin\Debug\Newtonsoft.Json.xml
+C:\Users\carol\Desktop\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csproj.CopyComplete
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\Jsonzai\bin\Debug\Jsonzai.dll
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\Jsonzai\bin\Debug\Jsonzai.pdb
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\Jsonzai\bin\Debug\Newtonsoft.Json.dll
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\Jsonzai\bin\Debug\Newtonsoft.Json.xml
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csprojAssemblyReference.cache
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csproj.CoreCompileInputs.cache
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csproj.CopyComplete
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.dll
+C:\Users\NRAFA\OneDrive\Área de Trabalho\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.pdb
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csprojAssemblyReference.cache
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csproj.CoreCompileInputs.cache
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.pdb
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\Jsonzai\bin\Debug\Jsonzai.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\Jsonzai\bin\Debug\Jsonzai.pdb
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\Jsonzai\bin\Debug\Newtonsoft.Json.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\Jsonzai\bin\Debug\Newtonsoft.Json.xml
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csproj.CopyComplete
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\Jsonzai\bin\Debug\Jsonzai.dll
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\Jsonzai\bin\Debug\Jsonzai.pdb
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\Jsonzai\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\Jsonzai\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csprojAssemblyReference.cache
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.csproj.CopyComplete
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.dll
+C:\Users\ASUS\Desktop\AVE\jsonzai-master\jsonzai-master\Jsonzai\obj\Debug\Jsonzai.pdb
