@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>JsonzaiBenchmark.JsonzaiBenchmark-20191119-144121</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.12.0, OS=Windows 10.0.18362
+Intel Core i7-8565U CPU 1.80GHz (Whiskey Lake), 1 CPU, 8 logical and 4 physical cores
+  [Host] : .NET Framework 4.8 (4.8.4018.0), X86 LegacyJIT  [AttachedDebugger]
+</code></pre>
+<pre><code>Job=InProcess  Toolchain=InProcessEmitToolchain  IterationCount=15  
+LaunchCount=1  WarmupCount=10  
+</code></pre>
+
+<table>
+<thead><tr><th>                             Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Rank</th>
+</tr>
+</thead><tbody><tr><td>BenchStudentReflect</td><td>11.664 us</td><td>0.3105 us</td><td>0.2905 us</td><td>9</td>
+</tr><tr><td>BenchStudentEmit</td><td>8.893 us</td><td>0.2128 us</td><td>0.1777 us</td><td>8</td>
+</tr><tr><td>BenchStudentArrayReflect</td><td>205.600 us</td><td>13.2858 us</td><td>12.4276 us</td><td>19</td>
+</tr><tr><td>BenchStudentArrayEmit</td><td>93.455 us</td><td>4.6247 us</td><td>4.0997 us</td><td>16</td>
+</tr><tr><td>BenchClassroomReflect</td><td>125.328 us</td><td>4.1419 us</td><td>3.8743 us</td><td>18</td>
+</tr><tr><td>BenchClassroomEmit</td><td>102.707 us</td><td>1.3739 us</td><td>1.1472 us</td><td>17</td>
+</tr><tr><td>BenchAccountReflect</td><td>40.882 us</td><td>0.6643 us</td><td>0.6214 us</td><td>15</td>
+</tr><tr><td>BenchAccountEmit</td><td>17.055 us</td><td>0.9632 us</td><td>0.8043 us</td><td>12</td>
+</tr><tr><td>BenchPropertyReflect</td><td>5.028 us</td><td>0.6836 us</td><td>0.6394 us</td><td>5</td>
+</tr><tr><td>BenchPropertyEmit</td><td>3.839 us</td><td>0.4692 us</td><td>0.4389 us</td><td>4</td>
+</tr><tr><td>BenchSiblingsReflect</td><td>3.949 us</td><td>0.5870 us</td><td>0.5490 us</td><td>4</td>
+</tr><tr><td>BenchSiblingsEmit</td><td>2.618 us</td><td>0.1687 us</td><td>0.1495 us</td><td>1</td>
+</tr><tr><td>BenchPersonWithBirthReflect</td><td>5.738 us</td><td>0.1477 us</td><td>0.1153 us</td><td>6</td>
+</tr><tr><td>BenchPersonWithBirthEmit</td><td>4.875 us</td><td>0.5731 us</td><td>0.5360 us</td><td>5</td>
+</tr><tr><td>BenchPersonArrayReflect</td><td>3.119 us</td><td>0.0915 us</td><td>0.0812 us</td><td>2</td>
+</tr><tr><td>BenchPersonArrayEmit</td><td>2.788 us</td><td>0.3955 us</td><td>0.3699 us</td><td>1</td>
+</tr><tr><td>BenchJsonUriReflect</td><td>3.339 us</td><td>0.0844 us</td><td>0.0748 us</td><td>3</td>
+</tr><tr><td>BenchJsonUriEmit</td><td>3.280 us</td><td>0.3055 us</td><td>0.2858 us</td><td>3</td>
+</tr><tr><td>BenchJsonGuidReflect</td><td>6.084 us</td><td>0.2162 us</td><td>0.1805 us</td><td>7</td>
+</tr><tr><td>BenchJsonGuidEmit</td><td>5.371 us</td><td>0.5562 us</td><td>0.5203 us</td><td>5</td>
+</tr><tr><td>BenchJsonDatetimeReflect</td><td>22.636 us</td><td>1.6662 us</td><td>1.5586 us</td><td>14</td>
+</tr><tr><td>BenchJsonDatetimeEmit</td><td>15.920 us</td><td>0.4524 us</td><td>0.4231 us</td><td>11</td>
+</tr><tr><td>BenchTestNumberReflect</td><td>20.916 us</td><td>0.9049 us</td><td>0.8464 us</td><td>14</td>
+</tr><tr><td>BenchTestNumberEmit</td><td>14.946 us</td><td>0.3907 us</td><td>0.3655 us</td><td>10</td>
+</tr><tr><td>BenchStructArrayAgendaReflect</td><td>6.561 us</td><td>0.7029 us</td><td>0.6575 us</td><td>7</td>
+</tr><tr><td>BenchStructArrayAgendaEmit</td><td>6.618 us</td><td>1.0593 us</td><td>0.9909 us</td><td>7</td>
+</tr><tr><td>BenchStructArrayTypeValueSpeedTestReflect</td><td>22.121 us</td><td>1.9451 us</td><td>1.7243 us</td><td>14</td>
+</tr><tr><td>BenchStructArrayTypeValueSpeedTestEmit</td><td>18.906 us</td><td>0.5398 us</td><td>0.4508 us</td><td>13</td>
+</tr></tbody></table>
+</body>
+</html>

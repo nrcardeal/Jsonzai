@@ -43,11 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISetter2.cs" />
+    <Compile Include="JsonParsemit.cs" />
+    <Compile Include="PropertySetter.cs" />
+    <Compile Include="ISetter.cs" />
     <Compile Include="JsonConvert.cs" />
     <Compile Include="JsonParser.cs" />
     <Compile Include="JsonProperty.cs" />
     <Compile Include="JsonTokens.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertySetterConvert.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

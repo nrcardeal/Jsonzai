@@ -1,0 +1,9 @@
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\AVE1920i\Jsonzai\bin\Release\Jsonzai.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\AVE1920i\Jsonzai\bin\Release\Jsonzai.pdb
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\AVE1920i\Jsonzai\bin\Release\Newtonsoft.Json.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\AVE1920i\Jsonzai\bin\Release\Newtonsoft.Json.xml
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\AVE1920i\Jsonzai\obj\Release\Jsonzai.csprojAssemblyReference.cache
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\AVE1920i\Jsonzai\obj\Release\Jsonzai.csproj.CoreCompileInputs.cache
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\AVE1920i\Jsonzai\obj\Release\Jsonzai.csproj.CopyComplete
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\AVE1920i\Jsonzai\obj\Release\Jsonzai.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\AVE1920i\Jsonzai\obj\Release\Jsonzai.pdb

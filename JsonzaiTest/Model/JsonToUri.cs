@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Jsonzai.Test.Model
 {
-    class JsonToUri
+    public class JsonToUri
     {
-        JsonToUri()
+        public JsonToUri()
         {
         }
         public static object Parse(string json)

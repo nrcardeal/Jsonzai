@@ -8,7 +8,7 @@ namespace Jsonzai.Test.Model
 {
     public class JsonToGuid
     {
-        JsonToGuid()
+        public JsonToGuid()
         {
         }
         public static object Parse(string json)

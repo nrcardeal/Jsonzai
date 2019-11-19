@@ -19,8 +19,7 @@ namespace Jsonzai.Test.Model
         public int Nr { get; set; }
       
         public int Group { get; set; }
-        [JsonProperty("github_id")]
-        public string GithubId { get; set; }
+        [JsonProperty("github_id")] public string GithubId { get; set; }
     }
 
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Jsonzai.Test.Model
 {
-    class Classroom
+    public class Classroom
     {
         public Classroom()
         {

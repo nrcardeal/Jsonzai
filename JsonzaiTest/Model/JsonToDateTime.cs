@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Jsonzai.Test.Model
 {
-    class JsonToDateTime
+    public class JsonToDateTime
     {
-        JsonToDateTime()
+        public JsonToDateTime()
         {
 
         }
