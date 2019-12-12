@@ -15,5 +15,9 @@ namespace Jsonzai.Test.Model
         {
             return new Guid(json);
         }
+        public static Guid Parse2(string json)
+        {
+            return new Guid(json);
+        }
     }
 }

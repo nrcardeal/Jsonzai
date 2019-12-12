@@ -165,164 +165,164 @@ namespace JsonzaiBenchmark
         [Benchmark]
         public void BenchStudentReflect()
         {
-            JsonParser.Parse(benchStudent, typeof(Student));
+            JsonParser.Parse<Student>(benchStudent);
         }
 
         [Benchmark]
         public void BenchStudentEmit()
         {
-            JsonParsemit.Parse(benchStudent, typeof(Student));
+            JsonParsemit.Parse<Student>(benchStudent);
         }
 
         [Benchmark]
         public void BenchStudentArrayReflect()
         {
-            JsonParser.Parse(BenchStudentArray(), typeof(Student));
+            JsonParser.Parse<Student>(BenchStudentArray());
         }
 
         [Benchmark]
         public void BenchStudentArrayEmit()
         {
-            JsonParsemit.Parse(BenchStudentArray(), typeof(Student));
+            JsonParsemit.Parse<Student>(BenchStudentArray());
         }
         [Benchmark]
         public void BenchClassroomReflect()
         {
-            JsonParser.Parse(BenchClassroom(), typeof(Classroom));
+            JsonParser.Parse<Classroom>(BenchClassroom());
         }
 
         [Benchmark]
         public void BenchClassroomEmit()
         {
-            JsonParsemit.Parse(BenchClassroom(), typeof(Classroom));
+            JsonParsemit.Parse<Classroom>(BenchClassroom());
         }
         [Benchmark]
         public void BenchAccountReflect()
         {
-            JsonParser.Parse(BenchAccount(), typeof(Account));
+            JsonParser.Parse<Account>(BenchAccount());
         }
 
         [Benchmark]
         public void BenchAccountEmit()
         {
-            JsonParsemit.Parse(BenchAccount(), typeof(Account));
+            JsonParsemit.Parse<Account>(BenchAccount());
         }
         [Benchmark]
         public void BenchPropertyReflect()
         {
-            JsonParser.Parse(benchStudent, typeof(Student));
+            JsonParser.Parse<Student>(benchStudent);
         }
 
         [Benchmark]
         public void BenchPropertyEmit()
         {
-            JsonParsemit.Parse(benchStudent, typeof(Student));
+            JsonParsemit.Parse<Student>(benchStudent);
         }
 
         [Benchmark]
         public void BenchSiblingsReflect()
         {
-            JsonParser.Parse(benchSiblings, typeof(Person));
+            JsonParser.Parse<Person>(benchSiblings);
         }
 
         [Benchmark]
         public void BenchSiblingsEmit()
         {
-            JsonParsemit.Parse(benchSiblings, typeof(Person));
+            JsonParsemit.Parse<Person>(benchSiblings);
         }
 
         [Benchmark]
         public void BenchPersonWithBirthReflect()
         {
-            JsonParser.Parse(benchPersonWithBirth, typeof(Person));
+            JsonParser.Parse<Person>(benchPersonWithBirth);
         }
 
         [Benchmark]
         public void BenchPersonWithBirthEmit()
         {
-            JsonParsemit.Parse(benchPersonWithBirth, typeof(Person));
+            JsonParsemit.Parse<Person>(benchPersonWithBirth);
         }
 
         [Benchmark]
         public void BenchPersonArrayReflect()
         {
-            JsonParser.Parse(benchPersonArray, typeof(Person));
+            JsonParser.Parse<Person>(benchPersonArray);
         }
 
         [Benchmark]
         public void BenchPersonArrayEmit()
         {
-            JsonParsemit.Parse(benchPersonArray, typeof(Person));
+            JsonParsemit.Parse<Person>(benchPersonArray);
         }
 
         [Benchmark]
         public void BenchJsonUriReflect()
         {
-            JsonParser.Parse(BenchJsonUri(), typeof(Website));
+            JsonParser.Parse<Website>(BenchJsonUri());
         }
 
         [Benchmark]
         public void BenchJsonUriEmit()
         {
-            JsonParsemit.Parse(BenchJsonUri(), typeof(Website));
+            JsonParsemit.Parse<Website>(BenchJsonUri());
         }
 
         [Benchmark]
         public void BenchJsonGuidReflect()
         {
-            JsonParser.Parse(BenchJsonGuid(), typeof(Classroom));
+            JsonParser.Parse<Classroom>(BenchJsonGuid());
         }
 
         [Benchmark]
         public void BenchJsonGuidEmit()
         {
-            JsonParsemit.Parse(BenchJsonGuid(), typeof(Classroom));
+            JsonParsemit.Parse<Classroom>(BenchJsonGuid());
         }
 
         [Benchmark]
         public void BenchJsonDatetimeReflect()
         {
-            JsonParser.Parse(BenchJsonDatetime(), typeof(Project));
+            JsonParser.Parse<Project>(BenchJsonDatetime());
         }
 
         [Benchmark]
         public void BenchJsonDatetimeEmit()
         {
-            JsonParsemit.Parse(BenchJsonDatetime(), typeof(Project));
+            JsonParsemit.Parse<Project>(BenchJsonDatetime());
         }
 
         [Benchmark]
         public void BenchTestNumberReflect()
         {
-            JsonParser.Parse(BenchTestNumber(), typeof(Account));
+            JsonParser.Parse<Account>(BenchTestNumber());
         }
 
         [Benchmark]
         public void BenchTestNumberEmit()
         {
-            JsonParsemit.Parse(BenchTestNumber(), typeof(Account));
+            JsonParsemit.Parse<Account>(BenchTestNumber());
         }
         [Benchmark]
         public void BenchStructArrayAgendaReflect()
         {
-            JsonParser.Parse(BenchStructArrayAgenda(), typeof(Agenda));
+            JsonParser.Parse<Agenda>(BenchStructArrayAgenda());
         }
 
         [Benchmark]
         public void BenchStructArrayAgendaEmit()
         {
-            JsonParsemit.Parse(BenchStructArrayAgenda(), typeof(Agenda));
+            JsonParsemit.Parse<Agenda>(BenchStructArrayAgenda());
         }
         [Benchmark]
         public void BenchStructArrayTypeValueSpeedTestReflect()
         {
-            JsonParser.Parse(BenchStructArrayTypeValueSpeedTest(), typeof(SpeedTest));
+            JsonParser.Parse<SpeedTest>(BenchStructArrayTypeValueSpeedTest());
         }
 
         [Benchmark]
         public void BenchStructArrayTypeValueSpeedTestEmit()
         {
-            JsonParsemit.Parse(BenchStructArrayTypeValueSpeedTest(), typeof(SpeedTest));
+            JsonParsemit.Parse<SpeedTest>(BenchStructArrayTypeValueSpeedTest());
         }
     }
 }

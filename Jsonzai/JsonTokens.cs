@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.IO;
 
 namespace Jsonzai
 {
-    public class JsonTokens
+    public class JsonTokens: Tokens
     {
 
         public const char OBJECT_OPEN = '{';
@@ -21,6 +23,7 @@ namespace Jsonzai
             this.src = src.ToCharArray();
             this.index = 0;
         }
+
 
         public char Current => src[index];
 
@@ -74,7 +77,7 @@ namespace Jsonzai
             return acc;
         }
 
-        private bool IsEnd(char curr)
+        public bool IsEnd(char curr)
         {
             return curr == OBJECT_END || curr == ARRAY_END || curr == COMMA;
         }

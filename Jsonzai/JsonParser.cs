@@ -29,12 +29,14 @@ namespace Jsonzai
             }
         }
 
-		public static object Parse(String source, Type klass)
-		{
-			return Parse(new JsonTokens(source), klass);
-		}
+        public static T Parse <T>(String source)
+        {
+            if(typeof(T).IsArray)
+                return (T)Parse(new JsonTokens(source), typeof(T).GetElementType());
+            return (T) Parse(new JsonTokens(source), typeof(T));
+        }
 
-		static object Parse(JsonTokens tokens, Type klass) {
+            static object Parse(Tokens tokens, Type klass) {
 			switch (tokens.Current) {
 				case JsonTokens.OBJECT_OPEN:
 					return ParseObject(tokens, klass);
@@ -47,13 +49,13 @@ namespace Jsonzai
 			}
 		}
 
-		private static string ParseString(JsonTokens tokens)
+		private static string ParseString(Tokens tokens)
 		{
 			tokens.Pop(JsonTokens.DOUBLE_QUOTES); // Discard double quotes "
 			return tokens.PopWordFinishedWith(JsonTokens.DOUBLE_QUOTES);
 		}
 
-        private static object ParsePrimitive(JsonTokens tokens, Type klass)
+        private static object ParsePrimitive(Tokens tokens, Type klass)
         {
             string word = tokens.popWordPrimitive();
             if (!klass.IsPrimitive || typeof(string).IsAssignableFrom(klass))
@@ -64,14 +66,14 @@ namespace Jsonzai
 			return klass.GetMethod("Parse", new Type[] { typeof(String), typeof(IFormatProvider) }).Invoke(null, new object[] { word, CultureInfo.InvariantCulture });
 		}
 
-		private static object ParseObject(JsonTokens tokens, Type klass)
+		private static object ParseObject(Tokens tokens, Type klass)
 		{
 			tokens.Pop(JsonTokens.OBJECT_OPEN); // Discard bracket { OBJECT_OPEN
 			object target = Activator.CreateInstance(klass);
 			return FillObject(tokens, target);
 		}
 
-        private static object FillObject(JsonTokens tokens, object target)
+        private static object FillObject(Tokens tokens, object target)
         {
             Type klass = target.GetType();
             if (!properties.ContainsKey(klass)) Cache(klass); 
@@ -89,8 +91,24 @@ namespace Jsonzai
             tokens.Pop(JsonTokens.OBJECT_END); // Discard bracket } OBJECT_END
             return target;
         }
+        public static IEnumerable<T> SequenceFrom<T>(string filename)
+        {
+            JsonTokens2 tokens = new JsonTokens2(filename);
+            tokens.Pop(JsonTokens2.ARRAY_OPEN);
+            while (tokens.Current != JsonTokens2.ARRAY_END)
+            {
+                yield return (T)Parse(tokens, typeof(T));
+                if (tokens.Current != JsonTokens2.ARRAY_END)
+                {
+                    tokens.Pop(JsonTokens2.COMMA);
+                    tokens.Trim();
+                }
+            }
+            tokens.stream.Close();
+        }
 
-		private static object ParseArray(JsonTokens tokens, Type klass)
+
+        private static object ParseArray(Tokens tokens, Type klass)
 		{
 			ArrayList list = new ArrayList();
 			tokens.Pop(JsonTokens.ARRAY_OPEN); // Discard square brackets [ ARRAY_OPEN
@@ -107,5 +125,24 @@ namespace Jsonzai
 			tokens.Pop(JsonTokens.ARRAY_END); // Discard square bracket ] ARRAY_END
 			return list.ToArray(klass);
 		}
+
+        public static void AddConfiguration <T, W>(string propName, Func<String, W> convert)
+        {
+            ISetter setter;
+            properties.Add(typeof(T), new Dictionary<string, ISetter>());
+            foreach (PropertyInfo prop in typeof(T).GetProperties())
+            {
+                PropertyInfo p = typeof(T).GetProperty(propName);
+                if(p == prop)
+                    setter = new SetterConvertDelegate<W>(p, convert);
+                else
+                    setter = new PropertySetter(prop);
+                JsonPropertyAttribute attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
+                if (attr != null)
+                    properties[typeof(T)].Add(attr.PropertyName, setter);
+                else
+                    properties[typeof(T)].Add(prop.Name, setter);
+            }
+        }
 	}
 }
