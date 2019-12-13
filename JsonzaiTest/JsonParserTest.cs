@@ -182,10 +182,14 @@ namespace Jsonzai.Test
         {
             GithubWebsite githubWebsite = new GithubWebsite();
             githubWebsite.GithubUri = new Uri("https://github.com/");
+            githubWebsite.GithubId = "mcastro";
             string json = JsonConvert.SerializeObject(githubWebsite);
             JsonParsemit.AddConfiguration<GithubWebsite, Uri>("GithubUri", JsonToUri.Parse2);
-            GithubWebsite gw = JsonParsemit.Parse<GithubWebsite>(json);
-            Assert.AreEqual(githubWebsite.GithubUri, gw.GithubUri);
+            JsonParser.AddConfiguration<GithubWebsite, Uri>("GithubUri", JsonToUri.Parse2);
+            GithubWebsite gwparser = JsonParser.Parse<GithubWebsite>(json);
+            GithubWebsite gwemit = JsonParsemit.Parse<GithubWebsite>(json);
+            Assert.AreEqual(githubWebsite.GithubUri, gwparser.GithubUri);
+            Assert.AreEqual(githubWebsite.GithubUri, gwemit.GithubUri);
         }
         [TestMethod]
         public void TestJsonDateTime()
