@@ -15,5 +15,10 @@ namespace Jsonzai.Test.Model
         {
             return new Uri(json);
         }
+        public static Uri Parse2(string json)
+        {
+            return new Uri(json);
+        }
+
     }
 }
