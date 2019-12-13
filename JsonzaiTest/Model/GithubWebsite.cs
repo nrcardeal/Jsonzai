@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Jsonzai.Test.Model
 {
-    class GithubWebsite
+    public class GithubWebsite
     {
         public GithubWebsite() { }
         public Uri GithubUri { get; set; }
