@@ -173,8 +173,19 @@ namespace Jsonzai.Test
             cls.Id = new Guid("F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4");
             string json = JsonConvert.SerializeObject(cls);
             json = json.Replace("GithubId", "github_id");
-            JsonParser.AddConfiguration<Classroom, Guid>("Id", JsonToGuid.Parse2);
-            Classroom classroom = JsonParser.Parse<Classroom>(json);            
+            //JsonParsemit.AddConfiguration<Classroom, Guid>("Id", JsonToGuid.Parse2);
+            Classroom classroom = JsonParsemit.Parse<Classroom>(json);            
+            Assert.AreEqual(cls.Id, classroom.Id);
+        }
+        [TestMethod]
+        public void TestJsonUriGithub()
+        {
+            Classroom cls = new Classroom();
+            cls.Id = new Guid("F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4");
+            string json = JsonConvert.SerializeObject(cls);
+            json = json.Replace("GithubId", "github_id");
+            //JsonParsemit.AddConfiguration<Classroom, Guid>("Id", JsonToGuid.Parse2);
+            Classroom classroom = JsonParsemit.Parse<Classroom>(json);
             Assert.AreEqual(cls.Id, classroom.Id);
         }
         [TestMethod]

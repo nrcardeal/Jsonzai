@@ -21,8 +21,20 @@ namespace Jsonzai.Test.Model
 
         public object SetValue(object target, object value)
         {            
-			((Classroom)target).Id = (Guid)conv((string)value);
+			((Classroom)target).Id = (Guid)JsonToGuid.Parse((string)value);
 			return target;
+        }
+    }
+	
+	public class JsonToGuid
+    {
+        public JsonToGuid()
+        {
+        }
+		
+        public static Guid Parse(string json)
+        {
+            return new Guid(json);
         }
     }
 	

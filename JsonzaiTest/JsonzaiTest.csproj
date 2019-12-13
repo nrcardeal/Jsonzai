@@ -191,6 +191,7 @@
     <Compile Include="Model\Agenda.cs" />
     <Compile Include="Model\Classroom.cs" />
     <Compile Include="Model\Date.cs" />
+    <Compile Include="Model\GithubWebsite.cs" />
     <Compile Include="Model\JsonToDateTime.cs" />
     <Compile Include="Model\JsonToGuid.cs" />
     <Compile Include="Model\JsonToUri.cs" />

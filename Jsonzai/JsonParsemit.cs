@@ -13,7 +13,7 @@ namespace Jsonzai
     public class JsonParsemit
     {
         static Dictionary<Type, Dictionary<string, ISetter2>> properties = new Dictionary<Type, Dictionary<string, ISetter2>>();
-        static Dictionary<string, Delegate> funcs = new Dictionary<string, Delegate>(); 
+        //static Dictionary<string, Delegate> funcs = new Dictionary<string, Delegate>(); 
         static void Cache(Type klass)
         {
             ISetter2 setter;
@@ -21,7 +21,7 @@ namespace Jsonzai
             properties.Add(klass, new Dictionary<string, ISetter2>());
             foreach (PropertyInfo prop in klass.GetProperties())
             {
-                setter = (ISetter2)Activator.CreateInstance(BuildSetter(klass, prop));
+                setter = (ISetter2)Activator.CreateInstance(BuildSetter(klass, prop, null));
                 attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
                 if (attr != null)
                     properties[klass].Add(attr.PropertyName, setter);
@@ -30,7 +30,7 @@ namespace Jsonzai
             }
             
         }
-        public static Type BuildSetter(Type klass, PropertyInfo p)
+        public static Type BuildSetter(Type klass, PropertyInfo p, Delegate del)
         {
 
             AssemblyName myAssemblyName = new AssemblyName();
@@ -55,7 +55,7 @@ namespace Jsonzai
 
             Type klassProp = p.PropertyType.IsArray ? p.PropertyType.GetElementType() : p.PropertyType;
             buildGetTypeProperty(myTypeBuilder, klassProp, p);
-            buildSetValueMethod(myTypeBuilder, klass, p);
+            buildSetValueMethod(myTypeBuilder, klass, p, del);
 
 
             // Create the Setter<klass.name><p.name>
@@ -70,7 +70,7 @@ namespace Jsonzai
             myAssemblyBuilder.Save(myAssemblyName.Name + ".dll");
             return t;
         }
-        static void buildSetValueMethod(TypeBuilder myTypeBuilder, Type klass, PropertyInfo p)
+        static void buildSetValueMethod(TypeBuilder myTypeBuilder, Type klass, PropertyInfo p, Delegate del)
         {
             MethodBuilder setValue = myTypeBuilder.DefineMethod(
                 "SetValue",
@@ -94,10 +94,18 @@ namespace Jsonzai
                     methodIL.Emit(OpCodes.Castclass, typeof(string));
                     methodIL.Emit(OpCodes.Call, convert.klass.GetMethod("Parse"));
                 }
-                if (p.PropertyType.IsValueType)
-                    methodIL.Emit(OpCodes.Unbox_Any, p.PropertyType);
-                else
-                    methodIL.Emit(OpCodes.Castclass, p.PropertyType);
+                else if (del != null)
+                {
+                    methodIL.Emit(OpCodes.Castclass, typeof(string));
+                    methodIL.Emit(OpCodes.Call, del.Method);
+                }
+                if (del == null)
+                {
+                    if (p.PropertyType.IsValueType)
+                        methodIL.Emit(OpCodes.Unbox_Any, p.PropertyType);
+                    else
+                        methodIL.Emit(OpCodes.Castclass, p.PropertyType);
+                }
                 methodIL.Emit(OpCodes.Callvirt, p.GetSetMethod());
                 methodIL.Emit(OpCodes.Ldarg_1); // ldarg.1
             }
@@ -113,11 +121,18 @@ namespace Jsonzai
                 {
                     methodIL.Emit(OpCodes.Castclass, typeof(string));
                     methodIL.Emit(OpCodes.Call, convert.klass.GetMethod("Parse"));
+                }else if(del != null)
+                {
+                    methodIL.Emit(OpCodes.Castclass, typeof(string));
+                    methodIL.Emit(OpCodes.Call, del.Method);
                 }
-                if (p.PropertyType.IsValueType)
-                    methodIL.Emit(OpCodes.Unbox_Any, p.PropertyType);
-                else
-                    methodIL.Emit(OpCodes.Castclass, p.PropertyType);
+                if (del == null)
+                {
+                    if (p.PropertyType.IsValueType)
+                        methodIL.Emit(OpCodes.Unbox_Any, p.PropertyType);
+                    else
+                        methodIL.Emit(OpCodes.Castclass, p.PropertyType);
+                }
                 methodIL.Emit(OpCodes.Call, p.GetSetMethod());
                 methodIL.Emit(OpCodes.Ldloc_0);
                 methodIL.Emit(OpCodes.Box, klass);
@@ -246,15 +261,14 @@ namespace Jsonzai
         public static void AddConfiguration<T, W>(string propName, Func<String, W> convert)
         {
             ISetter2 setter;
+            PropertyInfo p = typeof(T).GetProperty(propName);
             properties.Add(typeof(T), new Dictionary<string, ISetter2>());
-            funcs.Add(propName, convert);
             foreach (PropertyInfo prop in typeof(T).GetProperties())
             {
-                PropertyInfo p = typeof(T).GetProperty(propName);
                 if (p == prop)
-                    setter = new SetterConvertDelegate<W>(p, convert);
+                    setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop, convert));
                 else
-                    setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop));
+                    setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop, null));
                 JsonPropertyAttribute attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
                 if (attr != null)
                     properties[typeof(T)].Add(attr.PropertyName, setter);

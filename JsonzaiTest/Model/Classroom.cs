@@ -13,7 +13,7 @@ namespace Jsonzai.Test.Model
         }
         public string Class { get; set; }
         public Student[] Student { get; set; }
-        //[JsonConvert(typeof(JsonToGuid))]
+        [JsonConvert(typeof(JsonToGuid))]
         public Guid Id { get; set; }
 
     }

@@ -129,10 +129,10 @@ namespace Jsonzai
         public static void AddConfiguration <T, W>(string propName, Func<String, W> convert)
         {
             ISetter setter;
+            PropertyInfo p = typeof(T).GetProperty(propName);
             properties.Add(typeof(T), new Dictionary<string, ISetter>());
             foreach (PropertyInfo prop in typeof(T).GetProperties())
-            {
-                PropertyInfo p = typeof(T).GetProperty(propName);
+            {               
                 if(p == prop)
                     setter = new SetterConvertDelegate<W>(p, convert);
                 else
