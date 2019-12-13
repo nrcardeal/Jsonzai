@@ -130,18 +130,32 @@ namespace Jsonzai
         {
             ISetter setter;
             PropertyInfo p = typeof(T).GetProperty(propName);
-            properties.Add(typeof(T), new Dictionary<string, ISetter>());
-            foreach (PropertyInfo prop in typeof(T).GetProperties())
-            {               
-                if(p == prop)
-                    setter = new SetterConvertDelegate<W>(p, convert);
-                else
-                    setter = new PropertySetter(prop);
-                JsonPropertyAttribute attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
+            if (!properties.ContainsKey(typeof(T)))
+            {
+                properties.Add(typeof(T), new Dictionary<string, ISetter>());
+                foreach (PropertyInfo prop in typeof(T).GetProperties())
+                {
+                    if (p == prop)
+                        setter = new SetterConvertDelegate<W>(p, convert);
+                    else
+                        setter = new PropertySetter(prop);
+                    JsonPropertyAttribute attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
+                    if (attr != null)
+                        properties[typeof(T)].Add(attr.PropertyName, setter);
+                    else
+                        properties[typeof(T)].Add(prop.Name, setter);
+                }
+            }
+            else
+            {
+                properties[typeof(T)].Remove(propName);
+                setter = new SetterConvertDelegate<W>(p, convert);
+                JsonPropertyAttribute attr = (JsonPropertyAttribute)p.GetCustomAttribute(typeof(JsonPropertyAttribute));
                 if (attr != null)
                     properties[typeof(T)].Add(attr.PropertyName, setter);
                 else
-                    properties[typeof(T)].Add(prop.Name, setter);
+                    properties[typeof(T)].Add(p.Name, setter);
+                
             }
         }
 	}

@@ -12,8 +12,7 @@ namespace Jsonzai
 {
     public class JsonParsemit
     {
-        static Dictionary<Type, Dictionary<string, ISetter2>> properties = new Dictionary<Type, Dictionary<string, ISetter2>>();
-        //static Dictionary<string, Delegate> funcs = new Dictionary<string, Delegate>(); 
+        static Dictionary<Type, Dictionary<string, ISetter2>> properties = new Dictionary<Type, Dictionary<string, ISetter2>>(); 
         static void Cache(Type klass)
         {
             ISetter2 setter;
@@ -262,18 +261,31 @@ namespace Jsonzai
         {
             ISetter2 setter;
             PropertyInfo p = typeof(T).GetProperty(propName);
-            properties.Add(typeof(T), new Dictionary<string, ISetter2>());
-            foreach (PropertyInfo prop in typeof(T).GetProperties())
+            if (!properties.ContainsKey(typeof(T)))
             {
-                if (p == prop)
-                    setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop, convert));
-                else
-                    setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop, null));
-                JsonPropertyAttribute attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
+                properties.Add(typeof(T), new Dictionary<string, ISetter2>());
+                foreach (PropertyInfo prop in typeof(T).GetProperties())
+                {
+                    if (p == prop)
+                        setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop, convert));
+                    else
+                        setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop, null));
+                    JsonPropertyAttribute attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
+                    if (attr != null)
+                        properties[typeof(T)].Add(attr.PropertyName, setter);
+                    else
+                        properties[typeof(T)].Add(prop.Name, setter);
+                }
+            }
+            else
+            {
+                properties[typeof(T)].Remove(propName);
+                setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), p, convert));
+                JsonPropertyAttribute attr = (JsonPropertyAttribute)p.GetCustomAttribute(typeof(JsonPropertyAttribute));
                 if (attr != null)
                     properties[typeof(T)].Add(attr.PropertyName, setter);
                 else
-                    properties[typeof(T)].Add(prop.Name, setter);
+                    properties[typeof(T)].Add(p.Name, setter);
             }
         }
     }

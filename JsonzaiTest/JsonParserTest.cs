@@ -189,7 +189,9 @@ namespace Jsonzai.Test
             GithubWebsite gwparser = JsonParser.Parse<GithubWebsite>(json);
             GithubWebsite gwemit = JsonParsemit.Parse<GithubWebsite>(json);
             Assert.AreEqual(githubWebsite.GithubUri, gwparser.GithubUri);
+            Assert.AreEqual(githubWebsite.GithubId, gwparser.GithubId);
             Assert.AreEqual(githubWebsite.GithubUri, gwemit.GithubUri);
+            Assert.AreEqual(githubWebsite.GithubId, gwemit.GithubId);
         }
         [TestMethod]
         public void TestJsonDateTime()

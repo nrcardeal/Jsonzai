@@ -19,7 +19,7 @@ namespace Jsonzai.Test.Model
 
         public object SetValue(object target, object value)
         {
-			((Project)target).DueDate = (DateTime)JsonToDateTime.Parse((string)value);
+			((Project)target).DueDate = ;
 			return target;
         }
     }
