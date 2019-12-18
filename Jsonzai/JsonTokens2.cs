@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Jsonzai
 {
-    public class JsonTokens2: Tokens
+    public class JsonTokens2: Tokens, IDisposable
     {
 
         public const char OBJECT_OPEN = '{';
@@ -18,7 +18,7 @@ namespace Jsonzai
 
         public StreamReader stream;
 
-        public JsonTokens2(string filename)
+        public JsonTokens2(string filename) 
         {
             stream = new StreamReader(new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 2));
         }
@@ -71,6 +71,11 @@ namespace Jsonzai
         public bool IsEnd(char curr)
         {
             return curr == OBJECT_END || curr == ARRAY_END || curr == COMMA;
+        }
+
+        public void Dispose()
+        {
+            stream.Close();
         }
     }
 }

@@ -289,5 +289,29 @@ namespace Jsonzai.Test
             reader.Close();
         }
 
+        [TestMethod]
+        public void TestTwoAddedConfiguration()
+        {
+            Teacher tch = new Teacher();
+            tch.Name = "Maria Paulo";
+            tch.GithubUrl = new Uri("https://github.com/mariapaulo78");
+            tch.FirstTeachingDay = new DateTime(2008, 08, 12);
+            string json = JsonConvert.SerializeObject(tch);
+            JsonParser.AddConfiguration<Teacher, Uri>("GithubUrl", JsonToUri.Parse2);
+            JsonParser.AddConfiguration<Teacher, DateTime>("FirstTeachingDay", JsonToDateTime.Parse2);
+            Teacher teacher = JsonParser.Parse<Teacher>(json);
+            Assert.AreEqual(tch.Name, teacher.Name);
+            Assert.AreEqual(tch.GithubUrl, teacher.GithubUrl);
+            Assert.AreEqual(tch.FirstTeachingDay, teacher.FirstTeachingDay);
+            JsonParsemit.AddConfiguration<Teacher, Uri>("GithubUrl", JsonToUri.Parse2);
+            JsonParsemit.AddConfiguration<Teacher, DateTime>("FirstTeachingDay", JsonToDateTime.Parse2);
+            teacher = JsonParsemit.Parse<Teacher>(json);
+            Assert.AreEqual(tch.Name, teacher.Name);
+            Assert.AreEqual(tch.GithubUrl, teacher.GithubUrl);
+            Assert.AreEqual(tch.FirstTeachingDay, teacher.FirstTeachingDay);
+
+        }
+
+
     }
 }

@@ -93,18 +93,19 @@ namespace Jsonzai
         }
         public static IEnumerable<T> SequenceFrom<T>(string filename)
         {
-            JsonTokens2 tokens = new JsonTokens2(filename);
-            tokens.Pop(JsonTokens2.ARRAY_OPEN);
-            while (tokens.Current != JsonTokens2.ARRAY_END)
+            using (JsonTokens2 tokens = new JsonTokens2(filename))
             {
-                yield return (T)Parse(tokens, typeof(T));
-                if (tokens.Current != JsonTokens2.ARRAY_END)
+                tokens.Pop(JsonTokens2.ARRAY_OPEN);
+                while (tokens.Current != JsonTokens2.ARRAY_END)
                 {
-                    tokens.Pop(JsonTokens2.COMMA);
-                    tokens.Trim();
+                    yield return (T)Parse(tokens, typeof(T));
+                    if (tokens.Current != JsonTokens2.ARRAY_END)
+                    {
+                        tokens.Pop(JsonTokens2.COMMA);
+                        tokens.Trim();
+                    }
                 }
             }
-            tokens.stream.Close();
         }
 
 
