@@ -173,7 +173,7 @@ namespace Jsonzai.Test
             cls.Id = new Guid("F9168C5E-CEB2-4faa-B6BF-329BF39FA1E4");
             string json = JsonConvert.SerializeObject(cls);
             json = json.Replace("GithubId", "github_id");
-            //JsonParsemit.AddConfiguration<Classroom, Guid>("Id", JsonToGuid.Parse2);
+            JsonParsemit.AddConfiguration<Classroom, Guid>("Id", JsonToGuid.Parse2);
             Classroom classroom = JsonParsemit.Parse<Classroom>(json);            
             Assert.AreEqual(cls.Id, classroom.Id);
         }
@@ -269,13 +269,12 @@ namespace Jsonzai.Test
         [TestMethod]
         public void LazySequenceTest()
         {
-
             StreamWriter writer = new StreamWriter(new FileStream("test.txt", FileMode.Open, FileAccess.Write, FileShare.ReadWrite));
             StreamReader reader = new StreamReader(new FileStream("test.txt", FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
 
             String content = reader.ReadToEnd();
             String oldContent = content;
-            IEnumerator<Person> enumerator = JsonParser.SequenceFrom<Person>("test.txt").GetEnumerator();                                                                   
+            IEnumerator<Person> enumerator = JsonParsemit.SequenceFrom<Person>("test.txt").GetEnumerator();                                                                   
             enumerator.MoveNext();
             Assert.AreEqual("Ze Manel", enumerator.Current.Name);
             content = content.Replace("Candida Raimunda", "Albertina Asdrubal");

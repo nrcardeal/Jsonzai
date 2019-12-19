@@ -12,7 +12,12 @@ namespace Jsonzai
 {
     public class JsonParsemit
     {
-        static Dictionary<Type, Dictionary<string, ISetter2>> properties = new Dictionary<Type, Dictionary<string, ISetter2>>(); 
+        static Dictionary<Type, Dictionary<string, ISetter2>> properties = new Dictionary<Type, Dictionary<string, ISetter2>>();
+
+        /**
+         * This method fills the Dictionary properties with the different Properties of the class given
+         * and for each property creates a .dll that will have the IL to set the value of the property
+         */
         static void Cache(Type klass)
         {
             ISetter2 setter;
@@ -29,9 +34,50 @@ namespace Jsonzai
             }
             
         }
+        /**
+         * This method will replace the setter associated with the property name given, by one with the delegate code
+         */
+        public static void AddConfiguration<T, W>(string propName, Func<String, W> convert)
+        {
+            ISetter2 setter;
+            PropertyInfo p = typeof(T).GetProperty(propName);
+            if (!properties.ContainsKey(typeof(T)))
+            {
+                Cache(typeof(T));
+                //properties.Add(typeof(T), new Dictionary<string, ISetter2>());
+                //foreach (PropertyInfo prop in typeof(T).GetProperties())
+                //{
+                //    if (p == prop)
+                //        setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop, convert));
+                //    else
+                //        setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop, null));
+                //    JsonPropertyAttribute attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
+                //    if (attr != null)
+                //        properties[typeof(T)].Add(attr.PropertyName, setter);
+                //    else
+                //        properties[typeof(T)].Add(prop.Name, setter);
+                //}
+            }
+            //else
+            //{
+            properties[typeof(T)].Remove(propName);
+            setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), p, convert));
+            JsonPropertyAttribute attr = (JsonPropertyAttribute)p.GetCustomAttribute(typeof(JsonPropertyAttribute));
+            if (attr != null)
+                properties[typeof(T)].Add(attr.PropertyName, setter);
+            else
+                properties[typeof(T)].Add(p.Name, setter);
+            //}
+        }
+        #region IL Generation code
+        /**
+         * This method builds the .dll Library to set the value for the property given, 
+         * if a Delegate is given, the code will set the value with the code from the Delegate,
+         * if the property has an JsonConvertAttribute the value will be set according to its Parse method,
+         * if the property has an JsonConvertAttribute and a Delegate is given the Delegate is prioritised
+         */
         public static Type BuildSetter(Type klass, PropertyInfo p, Delegate del)
         {
-
             AssemblyName myAssemblyName = new AssemblyName();
             myAssemblyName.Name = "LibSetter" + klass.Name + p.Name;
 
@@ -53,7 +99,7 @@ namespace Jsonzai
                 new Type[] { typeof(ISetter2) });
 
             Type klassProp = p.PropertyType.IsArray ? p.PropertyType.GetElementType() : p.PropertyType;
-            buildGetTypeProperty(myTypeBuilder, klassProp, p);
+            buildGetTypeProperty(myTypeBuilder, klassProp);
             buildSetValueMethod(myTypeBuilder, klass, p, del);
 
 
@@ -65,12 +111,12 @@ namespace Jsonzai
             // type "ildasm MyDynamicAsm.dll" at the command prompt, and 
             // examine the assembly. You can also write a program that has
             // a reference to the assembly, and use the MyDynamicType type.
-            // 
             myAssemblyBuilder.Save(myAssemblyName.Name + ".dll");
             return t;
         }
         static void buildSetValueMethod(TypeBuilder myTypeBuilder, Type klass, PropertyInfo p, Delegate del)
         {
+            //Creates the builder for the method 
             MethodBuilder setValue = myTypeBuilder.DefineMethod(
                 "SetValue",
                 MethodAttributes.Public | MethodAttributes.ReuseSlot |
@@ -79,71 +125,73 @@ namespace Jsonzai
                 typeof(object), // Return type
                 new Type[] { typeof(object), typeof(object) });
 
-            // Add IL to SetValue body
-            JsonConvertAttribute convert = (JsonConvertAttribute)p.GetCustomAttribute(typeof(JsonConvertAttribute));
-            ILGenerator methodIL = setValue.GetILGenerator();
-            
             if (!klass.IsValueType)
+                ReferenceTypeClassILEmit(klass, del, p, setValue);
+            else
+                ValueTypeClassILEmit(klass, del, p, setValue);
+        }
+
+        static void ReferenceTypeClassILEmit(Type klass, Delegate del, PropertyInfo p, MethodBuilder setValue)
+        {
+            //Emits the body for a reference type class
+            ILGenerator methodIL = setValue.GetILGenerator();
+            methodIL.Emit(OpCodes.Ldarg_1);
+            methodIL.Emit(OpCodes.Castclass, klass);
+            methodIL.Emit(OpCodes.Ldarg_2);
+            PrepareValue(methodIL, del, p);
+            methodIL.Emit(OpCodes.Callvirt, p.GetSetMethod());
+            methodIL.Emit(OpCodes.Ldarg_1);
+            methodIL.Emit(OpCodes.Ret);
+        }
+        static void ValueTypeClassILEmit(Type klass, Delegate del, PropertyInfo p, MethodBuilder setValue)
+        {
+            //Emits th body for a value type class
+            ILGenerator methodIL = setValue.GetILGenerator();
+            LocalBuilder var = methodIL.DeclareLocal(klass);
+            methodIL.Emit(OpCodes.Ldarg_1); 
+            methodIL.Emit(OpCodes.Unbox_Any, klass);
+            methodIL.Emit(OpCodes.Stloc_0);
+            methodIL.Emit(OpCodes.Ldloca_S, var);
+            methodIL.Emit(OpCodes.Ldarg_2);
+            PrepareValue(methodIL, del, p);
+            methodIL.Emit(OpCodes.Call, p.GetSetMethod());
+            methodIL.Emit(OpCodes.Ldloc_0);
+            methodIL.Emit(OpCodes.Box, klass);
+            methodIL.Emit(OpCodes.Ret);// ret
+        }
+        /**
+         * Generates the IL code to prepare the value to be set in the property
+         * prioritising the Delegate code over the JsonConvertAtribute
+         */
+        static void PrepareValue(ILGenerator methodIL, Delegate del, PropertyInfo p)
+        {
+            if (del != null)
             {
-                methodIL.Emit(OpCodes.Ldarg_1); // ldarg.1
-                methodIL.Emit(OpCodes.Castclass, klass); // castclass  Student
-                methodIL.Emit(OpCodes.Ldarg_2); // ldarg.2
-                if (convert != null)
-                {
-                    methodIL.Emit(OpCodes.Castclass, typeof(string));
-                    methodIL.Emit(OpCodes.Call, convert.klass.GetMethod("Parse"));
-                }
-                else if (del != null)
-                {
-                    methodIL.Emit(OpCodes.Castclass, typeof(string));
-                    methodIL.Emit(OpCodes.Call, del.Method);
-                }
-                if (del == null)
-                {
-                    if (p.PropertyType.IsValueType)
-                        methodIL.Emit(OpCodes.Unbox_Any, p.PropertyType);
-                    else
-                        methodIL.Emit(OpCodes.Castclass, p.PropertyType);
-                }
-                methodIL.Emit(OpCodes.Callvirt, p.GetSetMethod());
-                methodIL.Emit(OpCodes.Ldarg_1); // ldarg.1
+                methodIL.Emit(OpCodes.Castclass, typeof(string));
+                methodIL.Emit(OpCodes.Call, del.Method);
             }
             else
             {
-                LocalBuilder var = methodIL.DeclareLocal(klass);
-                methodIL.Emit(OpCodes.Ldarg_1); // ldarg.1
-                methodIL.Emit(OpCodes.Unbox_Any, klass);
-                methodIL.Emit(OpCodes.Stloc_0);
-                methodIL.Emit(OpCodes.Ldloca_S, var);
-                methodIL.Emit(OpCodes.Ldarg_2);
+                JsonConvertAttribute convert = (JsonConvertAttribute)p.GetCustomAttribute(typeof(JsonConvertAttribute));
                 if (convert != null)
                 {
                     methodIL.Emit(OpCodes.Castclass, typeof(string));
                     methodIL.Emit(OpCodes.Call, convert.klass.GetMethod("Parse"));
-                }else if(del != null)
-                {
-                    methodIL.Emit(OpCodes.Castclass, typeof(string));
-                    methodIL.Emit(OpCodes.Call, del.Method);
                 }
-                if (del == null)
-                {
-                    if (p.PropertyType.IsValueType)
-                        methodIL.Emit(OpCodes.Unbox_Any, p.PropertyType);
-                    else
-                        methodIL.Emit(OpCodes.Castclass, p.PropertyType);
-                }
-                methodIL.Emit(OpCodes.Call, p.GetSetMethod());
-                methodIL.Emit(OpCodes.Ldloc_0);
-                methodIL.Emit(OpCodes.Box, klass);
+                if (p.PropertyType.IsValueType)
+                    methodIL.Emit(OpCodes.Unbox_Any, p.PropertyType);
+                else
+                    methodIL.Emit(OpCodes.Castclass, p.PropertyType);
             }
-            methodIL.Emit(OpCodes.Ret);// ret
         }
-        static void buildGetTypeProperty(TypeBuilder myTypeBuilder, Type klass, PropertyInfo p)
+
+        /**
+         * This method builds in the .dll a Property of the type Type with the value given
+         */
+        static void buildGetTypeProperty(TypeBuilder myTypeBuilder, Type klass)
         {
             PropertyBuilder getType = myTypeBuilder.DefineProperty(
                 "Type", PropertyAttributes.HasDefault, typeof(Type), new Type[0]);
-
-
             MethodBuilder getKlass = myTypeBuilder.DefineMethod(
                 "get_Klass",
                 MethodAttributes.Public | MethodAttributes.ReuseSlot |
@@ -151,24 +199,25 @@ namespace Jsonzai
                 CallingConventions.Standard,
                 typeof(Type),
                 new Type[0]);
+
             ILGenerator getmethodIL = getKlass.GetILGenerator();
-            getmethodIL.Emit(OpCodes.Ldtoken, klass); //IL_0000: ldtoken Jsonzai.Test.Model.Student
-            getmethodIL.Emit(OpCodes.Call, 
-                typeof(Type).GetMethod("GetTypeFromHandle", new Type[1] { typeof(RuntimeTypeHandle) }));//IL_0005:  call       class [mscorlib] System.Type[mscorlib] System.Type::GetTypeFromHandle(valuetype[mscorlib] System.RuntimeTypeHandle)
-            getmethodIL.Emit(OpCodes.Ret); //IL_000a:  ret        
+
+            getmethodIL.Emit(OpCodes.Ldtoken, klass);
+            getmethodIL.Emit(OpCodes.Call, typeof(Type).GetMethod("GetTypeFromHandle", new Type[1] { typeof(RuntimeTypeHandle) }));
+            getmethodIL.Emit(OpCodes.Ret);       
 
             getType.SetGetMethod(getKlass);
         }
-
+        #endregion
         private static object FillObject(Tokens tokens, object target)
         {
             Type klass = target.GetType();
-            if (!properties.ContainsKey(klass)) Cache(klass);
+            if (!properties.ContainsKey(klass)) Cache(klass); // Only fills the dictionary one time
             while (tokens.Current != JsonTokens.OBJECT_END)
             {
                 string propName = tokens.PopWordFinishedWith(JsonTokens.COLON).Replace("\"", "");
                 ISetter2 s = properties[klass][propName];
-                target = s.SetValue(target, Parse(tokens, s.Klass));
+                target = s.SetValue(target, Parse(tokens, s.Klass)); // Set the value to the target, the value is the result from the Parse method
 
                 tokens.Trim();
                 if (tokens.Current != JsonTokens.OBJECT_END)
@@ -184,8 +233,26 @@ namespace Jsonzai
             if (typeof(T).IsArray)
                 return (T)Parse(new JsonTokens(source), typeof(T).GetElementType());
             return (T)Parse(new JsonTokens(source), typeof(T));
+        }       
+        public static IEnumerable<T> SequenceFrom<T>(string filename)
+        {
+            using (JsonTokens2 tokens = new JsonTokens2(filename))
+            {
+                tokens.Pop(JsonTokens2.ARRAY_OPEN);
+                while (tokens.Current != JsonTokens2.ARRAY_END)
+                {
+                    yield return (T)Parse(tokens, typeof(T)); // Return the results by Lazy (only returns one element when is needed)
+                    if (tokens.Current != JsonTokens2.ARRAY_END)
+                    {
+                        tokens.Pop(JsonTokens2.COMMA);
+                        tokens.Trim();
+                    }
+                }
+            }
         }
+        
 
+        #region Code Disponibilized By The Teacher
         static object Parse(Tokens tokens, Type klass)
         {
             switch (tokens.Current)
@@ -200,13 +267,11 @@ namespace Jsonzai
                     return ParsePrimitive(tokens, klass);
             }
         }
-
         private static string ParseString(Tokens tokens)
         {
             tokens.Pop(JsonTokens.DOUBLE_QUOTES); // Discard double quotes "
             return tokens.PopWordFinishedWith(JsonTokens.DOUBLE_QUOTES);
         }
-
         private static object ParsePrimitive(Tokens tokens, Type klass)
         {
             string word = tokens.popWordPrimitive();
@@ -217,31 +282,12 @@ namespace Jsonzai
                     throw new InvalidOperationException("Looking for a primitive but requires instance of " + klass);
             return klass.GetMethod("Parse", new Type[] { typeof(String), typeof(IFormatProvider) }).Invoke(null, new object[] { word, CultureInfo.InvariantCulture });
         }
-
         private static object ParseObject(Tokens tokens, Type klass)
         {
             tokens.Pop(JsonTokens.OBJECT_OPEN); // Discard bracket { OBJECT_OPEN
             object target = Activator.CreateInstance(klass);
             return FillObject(tokens, target);
         }
-
-        public static IEnumerable<T> SequenceFrom<T>(string filename)
-        {
-            using (JsonTokens2 tokens = new JsonTokens2(filename))
-            {
-                tokens.Pop(JsonTokens2.ARRAY_OPEN);
-                while (tokens.Current != JsonTokens2.ARRAY_END)
-                {
-                    yield return (T)Parse(tokens, typeof(T));
-                    if (tokens.Current != JsonTokens2.ARRAY_END)
-                    {
-                        tokens.Pop(JsonTokens2.COMMA);
-                        tokens.Trim();
-                    }
-                }
-            }
-        }
-
         private static object ParseArray(Tokens tokens, Type klass)
         {
             ArrayList list = new ArrayList();
@@ -259,36 +305,6 @@ namespace Jsonzai
             tokens.Pop(JsonTokens.ARRAY_END); // Discard square bracket ] ARRAY_END
             return list.ToArray(klass);
         }
-        public static void AddConfiguration<T, W>(string propName, Func<String, W> convert)
-        {
-            ISetter2 setter;
-            PropertyInfo p = typeof(T).GetProperty(propName);
-            if (!properties.ContainsKey(typeof(T)))
-            {
-                properties.Add(typeof(T), new Dictionary<string, ISetter2>());
-                foreach (PropertyInfo prop in typeof(T).GetProperties())
-                {
-                    if (p == prop)
-                        setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop, convert));
-                    else
-                        setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop, null));
-                    JsonPropertyAttribute attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
-                    if (attr != null)
-                        properties[typeof(T)].Add(attr.PropertyName, setter);
-                    else
-                        properties[typeof(T)].Add(prop.Name, setter);
-                }
-            }
-            else
-            {
-                properties[typeof(T)].Remove(propName);
-                setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), p, convert));
-                JsonPropertyAttribute attr = (JsonPropertyAttribute)p.GetCustomAttribute(typeof(JsonPropertyAttribute));
-                if (attr != null)
-                    properties[typeof(T)].Add(attr.PropertyName, setter);
-                else
-                    properties[typeof(T)].Add(p.Name, setter);
-            }
-        }
+        #endregion
     }
 }

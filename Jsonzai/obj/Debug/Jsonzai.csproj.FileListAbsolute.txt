@@ -83,3 +83,12 @@ C:\Users\ASUS\Documents\GitHub\LI41N-G11\Jsonzai\obj\Debug\Jsonzai.csprojAssembl
 C:\Users\ASUS\Documents\GitHub\LI41N-G11\Jsonzai\obj\Debug\Jsonzai.csproj.CopyComplete
 C:\Users\ASUS\Documents\GitHub\LI41N-G11\Jsonzai\obj\Debug\Jsonzai.dll
 C:\Users\ASUS\Documents\GitHub\LI41N-G11\Jsonzai\obj\Debug\Jsonzai.pdb
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\Jsonzai\bin\Debug\Jsonzai.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\Jsonzai\bin\Debug\Jsonzai.pdb
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\Jsonzai\bin\Debug\Newtonsoft.Json.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\Jsonzai\bin\Debug\Newtonsoft.Json.xml
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\Jsonzai\obj\Debug\Jsonzai.csproj.CoreCompileInputs.cache
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\Jsonzai\obj\Debug\Jsonzai.csproj.CopyComplete
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\Jsonzai\obj\Debug\Jsonzai.dll
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\Jsonzai\obj\Debug\Jsonzai.pdb
+C:\Users\NRAFA\OneDrive\Documentos\GitHub\LI41N-G11\Jsonzai\obj\Debug\Jsonzai.csprojAssemblyReference.cache
