@@ -16,28 +16,35 @@ namespace Jsonzai
         public const char COMMA = ',';
         public const char COLON = ':';
 
-        public StreamReader stream;
+        public FileStream stream;
+        private char peek;
 
         public JsonTokens2(string filename) 
         {
-            stream = new StreamReader(new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 2));
+            stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 2);
+            peek = (char)stream.ReadByte();
         }
 
-        public char Current => (char)stream.Peek();
+        public char Current => peek;
 
         public void Trim() {
-            while (Current == ' ') stream.Read();
+            while (Current == ' ') MoveNext();
         }
-
+        public bool MoveNext()
+        {
+            peek = (char)stream.ReadByte();
+            return peek != 0;
+        }
         public char Pop()
         {
-            return (char)stream.Read();
+            MoveNext();
+            return Current;
         }
         public void Pop(char expected)
         {
             if (Current != expected)
                 throw new InvalidOperationException("Expected " + expected + " but found " + Current);
-            stream.Read();
+            MoveNext();
         }
 
         /// <summary>
@@ -48,11 +55,11 @@ namespace Jsonzai
         {
             Trim();
             string acc = "";
-            for ( ; Current != delimiter; stream.Read())
+            for ( ; Current != delimiter; MoveNext())
             {
                 acc += Current;
             }
-            stream.Read(); // Discard delimiter
+            MoveNext(); // Discard delimiter
             Trim();
             return acc;
         }
@@ -60,7 +67,7 @@ namespace Jsonzai
         {
             Trim();
             string acc = "";
-            for( ;  !IsEnd(Current); stream.Read())
+            for( ;  !IsEnd(Current); MoveNext())
             {
                 acc += Current;
             }

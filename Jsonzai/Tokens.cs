@@ -9,6 +9,7 @@ namespace Jsonzai
     interface Tokens
     {
         char Current { get; }
+        bool MoveNext();
         void Trim();
         char Pop();
         void Pop(char expected);
