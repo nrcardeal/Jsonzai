@@ -16,15 +16,17 @@ namespace Jsonzai
          */
         static void Cache(Type klass)
 		{
-            ISetter setter;
             properties.Add(klass, new Dictionary<string, ISetter>());
             foreach (PropertyInfo prop in klass.GetProperties()) 
             {
+                ISetter setter;
+                // Creates the appropriated setter 
                 JsonConvertAttribute convert = (JsonConvertAttribute)prop.GetCustomAttribute(typeof(JsonConvertAttribute));
                 if (convert != null)
                     setter = new PropertySetterConvert(prop, convert.klass);
                 else
                     setter = new PropertySetter(prop);
+                // Links the setter with the appropriated name
                 JsonPropertyAttribute attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
                 if (attr != null)           
                     properties[klass].Add(attr.PropertyName, setter);
@@ -39,36 +41,17 @@ namespace Jsonzai
          */
         public static void AddConfiguration<T, W>(string propName, Func<String, W> convert)
         {
-            ISetter setter;
-            PropertyInfo p = typeof(T).GetProperty(propName);
             if (!properties.ContainsKey(typeof(T)))
-            {
-                Cache(typeof(T));
-                //properties.Add(typeof(T), new Dictionary<string, ISetter>());
-                //foreach (PropertyInfo prop in typeof(T).GetProperties())
-                //{
-                //    if (p == prop)
-                //        setter = new SetterConvertDelegate<W>(p, convert);
-                //    else
-                //        setter = new PropertySetter(prop);
-                //    JsonPropertyAttribute attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
-                //    if (attr != null)
-                //        properties[typeof(T)].Add(attr.PropertyName, setter);
-                //    else
-                //        properties[typeof(T)].Add(prop.Name, setter);
-                //}
-            }
-            //else
-            //{
-            properties[typeof(T)].Remove(propName);
-            setter = new SetterConvertDelegate<W>(p, convert);
+                Cache(typeof(T)); // Fills the properties Dictionary with all the properties of T
+
+            // Removes and substitues the property referenced in the parameters
+            // and the linked setter for one with a setter done with the convert delegate
+            PropertyInfo p = typeof(T).GetProperty(propName);
             JsonPropertyAttribute attr = (JsonPropertyAttribute)p.GetCustomAttribute(typeof(JsonPropertyAttribute));
             if (attr != null)
-                properties[typeof(T)].Add(attr.PropertyName, setter);
-            else
-                properties[typeof(T)].Add(p.Name, setter);
-
-            //}
+                propName = attr.PropertyName; // Substitute the name for the name that is associated on the dictionary when filled by the Cache
+            properties[typeof(T)].Remove(propName);
+            properties[typeof(T)].Add(propName, new SetterConvertDelegate<W>(p, convert));
         }
 
 

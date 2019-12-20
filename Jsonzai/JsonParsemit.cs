@@ -20,54 +20,34 @@ namespace Jsonzai
          */
         static void Cache(Type klass)
         {
-            ISetter2 setter;
-            JsonPropertyAttribute attr;
             properties.Add(klass, new Dictionary<string, ISetter2>());
             foreach (PropertyInfo prop in klass.GetProperties())
             {
-                setter = (ISetter2)Activator.CreateInstance(BuildSetter(klass, prop, null));
-                attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
+                ISetter2 setter = (ISetter2)Activator.CreateInstance(BuildSetter(klass, prop, null));
+                // Links the setter with the appropriated name
+                JsonPropertyAttribute attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
                 if (attr != null)
                     properties[klass].Add(attr.PropertyName, setter);
                 else
                     properties[klass].Add(prop.Name, setter);
             }
-            
         }
         /**
          * This method will replace the setter associated with the property name given, by one with the delegate code
          */
         public static void AddConfiguration<T, W>(string propName, Func<String, W> convert)
         {
-            ISetter2 setter;
-            PropertyInfo p = typeof(T).GetProperty(propName);
             if (!properties.ContainsKey(typeof(T)))
-            {
-                Cache(typeof(T));
-                //properties.Add(typeof(T), new Dictionary<string, ISetter2>());
-                //foreach (PropertyInfo prop in typeof(T).GetProperties())
-                //{
-                //    if (p == prop)
-                //        setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop, convert));
-                //    else
-                //        setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), prop, null));
-                //    JsonPropertyAttribute attr = (JsonPropertyAttribute)prop.GetCustomAttribute(typeof(JsonPropertyAttribute));
-                //    if (attr != null)
-                //        properties[typeof(T)].Add(attr.PropertyName, setter);
-                //    else
-                //        properties[typeof(T)].Add(prop.Name, setter);
-                //}
-            }
-            //else
-            //{
-            properties[typeof(T)].Remove(propName);
-            setter = (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), p, convert));
+                Cache(typeof(T)); // Fills the properties Dictionary with all the properties of T
+
+            // Removes and substitues the property referenced in the parameters
+            // and the linked setter for one with a setter done with the convert delegate
+            PropertyInfo p = typeof(T).GetProperty(propName);
             JsonPropertyAttribute attr = (JsonPropertyAttribute)p.GetCustomAttribute(typeof(JsonPropertyAttribute));
             if (attr != null)
-                properties[typeof(T)].Add(attr.PropertyName, setter);
-            else
-                properties[typeof(T)].Add(p.Name, setter);
-            //}
+                propName = attr.PropertyName; // Substitute the name for the name that is associated on the dictionary when filled by the Cache
+            properties[typeof(T)].Remove(propName);
+            properties[typeof(T)].Add(propName, (ISetter2)Activator.CreateInstance(BuildSetter(typeof(T), p, convert)));
         }
         #region IL Generation code
         /**
@@ -99,8 +79,8 @@ namespace Jsonzai
                 new Type[] { typeof(ISetter2) });
 
             Type klassProp = p.PropertyType.IsArray ? p.PropertyType.GetElementType() : p.PropertyType;
-            buildGetTypeProperty(myTypeBuilder, klassProp);
-            buildSetValueMethod(myTypeBuilder, klass, p, del);
+            BuildGetTypeProperty(myTypeBuilder, klassProp);
+            BuildSetValueMethod(myTypeBuilder, klass, p, del);
 
 
             // Create the Setter<klass.name><p.name>
@@ -114,7 +94,7 @@ namespace Jsonzai
             myAssemblyBuilder.Save(myAssemblyName.Name + ".dll");
             return t;
         }
-        static void buildSetValueMethod(TypeBuilder myTypeBuilder, Type klass, PropertyInfo p, Delegate del)
+        static void BuildSetValueMethod(TypeBuilder myTypeBuilder, Type klass, PropertyInfo p, Delegate del)
         {
             //Creates the builder for the method 
             MethodBuilder setValue = myTypeBuilder.DefineMethod(
@@ -188,7 +168,7 @@ namespace Jsonzai
         /**
          * This method builds in the .dll a Property of the type Type with the value given
          */
-        static void buildGetTypeProperty(TypeBuilder myTypeBuilder, Type klass)
+        static void BuildGetTypeProperty(TypeBuilder myTypeBuilder, Type klass)
         {
             PropertyBuilder getType = myTypeBuilder.DefineProperty(
                 "Type", PropertyAttributes.HasDefault, typeof(Type), new Type[0]);
