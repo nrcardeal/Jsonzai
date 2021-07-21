@@ -1,1 +1,0 @@
-[{Name: "Ze Manel"}, {Name: "Albertina Asdrubal"}, {Name: "Kata Mandala"}]
